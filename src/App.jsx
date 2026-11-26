@@ -10,6 +10,10 @@ import imgJsr from './assets/projects/jsr-om-jewels.webp'
 gsap.registerPlugin(ScrollTrigger)
 
 const PHONE='+91 9660633043',WA='https://wa.me/919660633043',MAIL='dishikadoshi2930@gmail.com',LI='https://www.linkedin.com/in/dishikadoshi/'
+const SUBJECT='Project enquiry',MAILTO='mailto:'+MAIL+'?subject='+encodeURIComponent(SUBJECT),GMAIL='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(MAIL)+'&su='+encodeURIComponent(SUBJECT)
+const isMobile=()=>typeof navigator!=='undefined'&&(/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))
+// phones/tablets: normal mailto (opens Gmail or the default mail app); desktop: Gmail compose in a new tab
+const openMail=e=>{if(!isMobile()){e.preventDefault();window.open(GMAIL,'_blank','noopener,noreferrer')}}
 const manifesto="I design and build web products that feel effortless to use and are engineered to last. Clean architecture, considered interfaces and performance that holds up under real traffic."
 const IC={code:'M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14',layers:'M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5',server:'M4 5h16v5H4zM4 14h16v5H4zM8 7.5h.01M8 16.5h.01',cloud:'M7 18a4 4 0 010-8 5 5 0 019.6-1A4.5 4.5 0 0117 18H7z',gauge:'M4 18a8 8 0 1116 0M12 18l4-6',arrow:'M7 17L17 7M8 7h9v9',plus:'M12 5v14M5 12h14'}
 const Icon=({n})=><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d={IC[n]}/></svg>
@@ -136,10 +140,10 @@ export default function App(){
 
     <section id="contact" className="contact wrap"><div className="cta"><div className="decos"><Deco k="ring" s="-.6" z="180px" style={{right:'-4%',top:'-8%'}}/><Deco k="ring2" s=".7" z="90px" style={{right:'14%',bottom:'-3%'}}/><Deco k="dot" s="-1" style={{left:'46%',top:'14%'}}/><Deco k="plus" s=".9" style={{left:'3%',bottom:'8%'}}/></div>
       <div><Eyebrow n="05" t="Contact"/><h2 className="cl"><span><i>Let’s build</i></span><span><i>something <em>precise.</em></i></span></h2>
-        <p>Tell me about your product and timeline. I usually reply within a day.</p><a className="btn solid" href={'mailto:'+MAIL}>Send an email</a></div>
+        <p>Tell me about your product and timeline. I usually reply within a day.</p><a className="btn solid" href={MAILTO} onClick={openMail}>Send an email</a></div>
       <div className="contact-list">
-        {[['Email',MAIL,'mailto:'+MAIL],['Phone',PHONE,'tel:+919660633043'],['WhatsApp',PHONE,WA],['LinkedIn','/in/dishikadoshi',LI]].map(([l,v,u])=>
-          <a key={l} href={u} target={u.startsWith('http')?'_blank':undefined} rel="noreferrer"><div><small>{l}</small>{v}</div><Icon n="arrow"/></a>)}</div></div></section>
+        {[['Email',MAIL,MAILTO],['Phone',PHONE,'tel:+919660633043'],['WhatsApp',PHONE,WA],['LinkedIn','/in/dishikadoshi',LI]].map(([l,v,u])=>
+          <a key={l} href={u} onClick={l==='Email'?openMail:undefined} target={u.startsWith('http')?'_blank':undefined} rel="noreferrer"><div><small>{l}</small>{v}</div><Icon n="arrow"/></a>)}</div></div></section>
     <footer><span>© 2026 Dishika Doshi</span><a href="#top">Back to top ↑</a></footer>
   </div>
 }
