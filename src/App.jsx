@@ -3,6 +3,10 @@ import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import Scene from './Scene.jsx'
+import imgVigilant from './assets/projects/vigilant-fintech.webp'
+import imgVector from './assets/projects/vectorspend.webp'
+import imgDiy from './assets/projects/diy-prefab.webp'
+import imgJsr from './assets/projects/jsr-om-jewels.webp'
 gsap.registerPlugin(ScrollTrigger)
 
 const PHONE='+91 9660633043',WA='https://wa.me/919660633043',MAIL='dishikadoshi2930@gmail.com',LI='https://www.linkedin.com/in/dishikadoshi/'
@@ -15,10 +19,10 @@ const services=[['Full stack development','React, Next.js and Node.js, built on 
  ['Cloud and DevOps','CI/CD, containers and deployments on GCP, automated and monitored.','cloud',['CI/CD','Docker','GCP']],
  ['Performance','Core Web Vitals, bundle analysis and query tuning for existing products.','gauge',['Core Web Vitals','Bundle analysis','Query tuning']]]
 const pillars=[['Clean architecture','Code organised so the product stays easy to change as it grows.'],['Considered interfaces','Accessible, precise and quiet, so the product feels effortless to use.'],['Performance under traffic','Fast pages and queries that keep holding up with real users.']]
-const projects=[['Vigilant Fintech','Remote business support','A business site for a remote support firm covering admin, customer care, marketing, e-commerce and bookkeeping.','React · Three.js · Node.js · PostgreSQL','M0 90 C60 85 90 40 150 55 S250 20 320 10','#8fa8ff','https://vigilantfintech.com/'],
- ['VectorSpend','Cost intelligence','A consulting site with an admin dashboard, helping businesses cut costs through data-driven insights.','React · Three.js · Node.js · PostgreSQL','M0 70 C50 20 100 90 160 50 S260 80 320 30','#7fd6c2','https://www.vectorspend.com/'],
- ['DIY PreFab','Steel construction','A site for pre-engineered steel buildings, warehouses and factories across India, with scroll-driven 3D and smooth motion.','React · Three.js · Node.js · PostgreSQL · GSAP · Lenis','M0 80 L60 60 L110 75 L170 30 L230 45 L320 15','#d6a8ff','https://www.diyprefab.com/'],
- ['JSR OM Jewels','Headless e-commerce, in progress','An ongoing headless jewellery storefront, with Shopify handling products, checkout and payments.','Next.js · Shopify','M0 95 C80 90 120 60 180 40 S280 30 320 5','#ffc68a','https://jsromjewels.vercel.app/']]
+const projects=[['Vigilant Fintech','Remote business support','A business site for a remote support firm covering admin, customer care, marketing, e-commerce and bookkeeping.','React · Three.js · Node.js · PostgreSQL','M0 90 C60 85 90 40 150 55 S250 20 320 10','#8fa8ff','https://vigilantfintech.com/',imgVigilant],
+ ['VectorSpend','Cost intelligence','A consulting site with an admin dashboard, helping businesses cut costs through data-driven insights.','React · Three.js · Node.js · PostgreSQL','M0 70 C50 20 100 90 160 50 S260 80 320 30','#7fd6c2','https://www.vectorspend.com/',imgVector],
+ ['DIY PreFab','Steel construction','A site for pre-engineered steel buildings, warehouses and factories across India, with scroll-driven 3D and smooth motion.','React · Three.js · Node.js · PostgreSQL · GSAP · Lenis','M0 80 L60 60 L110 75 L170 30 L230 45 L320 15','#d6a8ff','https://www.diyprefab.com/',imgDiy],
+ ['JSR OM Jewels','Headless e-commerce, in progress','An ongoing headless jewellery storefront, with Shopify handling products, checkout and payments.','Next.js · Shopify','M0 95 C80 90 120 60 180 40 S280 30 320 5','#ffc68a','https://jsromjewels.vercel.app/',imgJsr]]
 const steps=[['Discovery','Goals, users and constraints first. Success metrics are agreed before any code is written.'],
  ['Design and architecture','Wireframes and system design, with each decision documented.'],
  ['Build and iterate','Short sprints with weekly demos so feedback lands early.'],
@@ -120,11 +124,10 @@ export default function App(){
 
     <section id="work" className="work"><div className="track">
       <div className="intro panel"><Deco k="ring" x="-.7" z="110px" style={{right:'-18%',top:'-6%'}}/><Eyebrow n="03" t="Selected work"/><h2>Products, from <em>interface</em> to infrastructure.</h2><p>Four projects, from live client sites to a build in progress.</p></div>
-      {projects.map(([n,k,d,tags,path,c,url],i)=><a className="panel pj" key={n} href={url} target="_blank" rel="noreferrer" aria-label={n+' - open site'} style={{'--c':c}}>
+      {projects.map(([n,k,d,tags,path,c,url,img],i)=><a className="panel pj" key={n} href={url} target="_blank" rel="noreferrer" aria-label={n+' - open site'} style={{'--c':c}}>
         <Deco k={i%2?'dia':'plus'} x={.7+i*.15} style={{right:'3%',top:'-9%'}}/><Deco k="dot" x={-1-i*.1} style={{left:'42%',bottom:'-5%'}}/>
         <div className="shot"><div className="chrome"><i/><i/><i/><b>{n.toLowerCase()}.app</b></div>
-          <div className="ui"><aside><u/><u/><u/><u/></aside><div className="main"><div className="kpis"><span><u/><u/></span><span><u/><u/></span><span><u/><u/></span></div>
-            <svg viewBox="0 0 320 100" preserveAspectRatio="none"><path d={path} fill="none" stroke={c} strokeWidth="1.5" vectorEffect="non-scaling-stroke"/></svg></div></div></div>
+          <img className="shot-img" src={img} alt={n+' website preview'} loading="lazy" draggable="false"/></div>
         <div className="pm"><div><h3>{n}<em>{k}</em></h3><p>{d}</p><div className="tags">{tags.split(' · ').map(t=><span key={t}>{t}</span>)}</div></div><span className="pn">0{i+1} / 0{projects.length} <Icon n="arrow"/></span></div></a>)}
     </div><div className="wprog"><div/></div></section>
 
